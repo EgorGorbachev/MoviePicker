@@ -8,7 +8,7 @@
     tools:context=".view.ui.authentication_screen.AuthenticationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/authHeader"
+        android:id="@+id/regHeader"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:background="@color/primary_color"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/authHeaderTitle"
+            android:id="@+id/regHeaderTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -33,7 +33,7 @@
             app:layout_constraintVertical_bias="0.45" />
 
         <TextView
-            android:id="@+id/authHeaderSubtitle"
+            android:id="@+id/regHeaderSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/yantramanav_regular"
@@ -43,11 +43,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/authHeaderTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/regHeaderTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
-        android:id="@+id/authEmailInput"
+        android:id="@+id/regEmailInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -58,10 +58,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/authHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/regHeader" />
 
     <EditText
-        android:id="@+id/authPasswordInput"
+        android:id="@+id/regPasswordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -72,52 +72,65 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/authEmailInput" />
+        app:layout_constraintTop_toBottomOf="@+id/regEmailInput" />
 
+    <EditText
+        android:id="@+id/regRepeatPasswordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edit_text_border"
+        android:hint="Repeat Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regPasswordInput" />
 
     <LinearLayout
-        android:id="@+id/toRegisterText"
+        android:id="@+id/toLoginText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/authPasswordInput">
+        app:layout_constraintTop_toBottomOf="@+id/regRepeatPasswordInput">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/yantramanav_regular"
-            android:text="Don\`t have an account?"
+            android:text="Already have an account?"
             android:textColor="#8C8C8C"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/toRegisterTextBtn"
+            android:id="@+id/toLoginTextBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:fontFamily="@font/yantramanav_regular"
             android:foreground="?attr/selectableItemBackground"
-            android:text="Register"
+            android:text="Login"
             android:textColor="#434343"
             android:textSize="16sp" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/authLoginBtn"
+        android:id="@+id/registerBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
-        android:text="LogIn"
+        android:text="Register"
         android:textSize="18sp"
         android:textAllCaps="false"
         android:textColor="@color/tertiary_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toRegisterText" />
+        app:layout_constraintTop_toBottomOf="@+id/toLoginText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

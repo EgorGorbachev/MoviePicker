@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "707850697717",
+    "project_id": "moviepicker-ce5f7",
+    "storage_bucket": "moviepicker-ce5f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707850697717:android:07589ea96cce0a67a93ebc",
+        "android_client_info": {
+          "package_name": "com.example.movie_picker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707850697717-82nfhbfm9bebrlvgmhpcldv3p266qb3s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.movie_picker",
+            "certificate_hash": "38e2c57e552c96d37f31037d88bf05784cd3e603"
+          }
+        },
+        {
+          "client_id": "707850697717-a577ikdbh2eprc0ujhq88f0eler09jhk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHb8BxIb7YcGWAbJQUhS4WTl8kz1Zj9iM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707850697717-a577ikdbh2eprc0ujhq88f0eler09jhk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

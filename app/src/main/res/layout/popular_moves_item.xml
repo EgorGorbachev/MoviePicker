@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="8dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/popularMovieImage"
+        android:layout_width="150dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/popularMovieTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/yantramanav_bold"
+        android:text="TextView"
+        android:textColor="@color/primary_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/popularMovieImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/popularMovieRealiseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/popularMovieImage"
+        app:layout_constraintTop_toBottomOf="@+id/popularMovieTitle" />
+
+
+    <LinearLayout
+        android:id="@+id/voteContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/popularMovieImage"
+        app:layout_constraintTop_toBottomOf="@+id/popularMovieRealiseDate">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_star_24" />
+
+        <TextView
+            android:id="@+id/popularMovieVote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="wwrwerw"
+            android:textColor="@color/primary_color"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/popularMovieBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/popularMovieImage"
+        app:layout_constraintTop_toBottomOf="@+id/voteContainer">
+
+        <TextView
+            android:id="@+id/popularMovieOverview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="dfgdfgxsasxasxasxasxaasdasdasdasdasdasdsxasxasxasasxasxasx"
+            android:textColor="@color/primary_color"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/popularMovieImage"
+            app:layout_constraintTop_toBottomOf="@+id/voteContainer" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/blur_gradient"
+            app:layout_constraintBottom_toBottomOf="@+id/popularMovieOverview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/popularMovieOverview"
+            app:layout_constraintTop_toTopOf="@+id/popularMovieOverview" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/popularMovieBtn"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="2dp"
+        android:fontFamily="@font/yantramanav_regular"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:textColor="@color/tertiary_color"
+        android:text="Read More"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/popularMovieImage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,25 @@
 package com.example.movie_picker.view.base
 
+import android.app.Activity
+import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.example.gorbachev_gmail.base.toast
 import com.example.gorbachev_gmail.util.alertDialog
 
 abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId) {
+	
+	fun Fragment.hideKeyboard() {
+		view?.let { activity?.hideKeyboard(it) }
+	}
+	
+	private fun Context.hideKeyboard(view: View) {
+		val inputMethodManager =
+			getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+		inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+	}
 	
 	fun toast(mes: String) {
 		requireContext().toast(mes)
@@ -28,5 +42,9 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId) {
 			countBtn,
 			requireContext()
 		)
+	}
+	
+	companion object {
+		const val TAG= "MyApp"
 	}
 }

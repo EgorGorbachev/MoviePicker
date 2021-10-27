@@ -125,12 +125,24 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:text="Register"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:textSize="18sp"
         android:textAllCaps="false"
         android:textColor="@color/tertiary_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toLoginText" />
+
+    <CheckBox
+        android:id="@+id/checkBoxRememberMeReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember me"
+        android:textColor="#434343"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

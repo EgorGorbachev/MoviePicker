@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/tertiary_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <View
+            android:background="@drawable/menu_gradient_top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <Button
+            android:id="@+id/popularMoviesChangeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="start|center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Popular Movies"
+            android:fontFamily="@font/yantramanav_regular"
+            android:textAllCaps="false"
+            android:textColor="@color/primary_color"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#398E9FB1"
+        app:layout_constraintBottom_toBottomOf="@+id/popularMoviesChangeBtn" />
+
+    <Button
+        android:id="@+id/nowPlayingMoviesChangeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="start|center"
+        android:fontFamily="@font/yantramanav_regular"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Now In Theatres"
+        android:textAllCaps="false"
+        android:textColor="@color/primary_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popularMoviesChangeBtn" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#398E9FB1"
+        app:layout_constraintBottom_toBottomOf="@+id/popularMoviesChangeBtn" />
+
+    <Button
+        android:id="@+id/upcomingMoviesChangeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="start|center"
+        android:fontFamily="@font/yantramanav_regular"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Upcoming In Theatres"
+        android:textAllCaps="false"
+        android:textColor="@color/primary_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popularMoviesChangeBtn" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#398E9FB1"
+        app:layout_constraintBottom_toBottomOf="@+id/popularMoviesChangeBtn" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <View
+            android:background="@drawable/menu_gradient_bot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <Button
+            android:id="@+id/topRatedMoviesChangeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="start|center"
+            android:fontFamily="@font/yantramanav_regular"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Top Rated Movies"
+            android:textAllCaps="false"
+            android:textColor="@color/primary_color"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/popularMoviesChangeBtn" />
+
+    </FrameLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#398E9FB1"
+        app:layout_constraintBottom_toBottomOf="@+id/topRatedMoviesChangeBtn" />
+
+</LinearLayout>

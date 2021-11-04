@@ -9,8 +9,11 @@ import com.example.movie_picker.data.rest.model.MovieForList
 import com.example.movie_picker.databinding.PopularMovesItemBinding
 import com.squareup.picasso.Picasso
 
-class SearchAdapter(private val listener: OnItemClickListener, private val onReadMoreClick: OnReadMoreClick) :
-	PagingDataAdapter<MovieForList, SearchAdapter.MovieViewHolder>(MOVIE_COMPARATOR){
+class SearchAdapter(
+	private val listener: OnItemClickListener,
+	private val onReadMoreClick: OnReadMoreClick
+) :
+	PagingDataAdapter<MovieForList, SearchAdapter.MovieViewHolder>(MOVIE_COMPARATOR) {
 	override fun onBindViewHolder(holder: SearchAdapter.MovieViewHolder, position: Int) {
 		val currentItem = getItem(position)
 		
@@ -48,13 +51,14 @@ class SearchAdapter(private val listener: OnItemClickListener, private val onRea
 		fun bind(movieForList: MovieForList) {
 			binding.apply {
 				popularMovieTitle.text = movieForList.title
-				Picasso.get().load("https://image.tmdb.org/t/p/w500/${movieForList.poster_path}").into(popularMovieImage)
+				Picasso.get().load("https://image.tmdb.org/t/p/w500/${movieForList.poster_path}")
+					.into(popularMovieImage)
 				val date = movieForList.release_date.split("-").reversed().joinToString(".")
 				popularMovieRealiseDate.text = date
 				popularMovieVote.text = movieForList.vote_average.toString()
-				popularMovieOverview.text = movieForList.overview+"\n"
+				popularMovieOverview.text = movieForList.overview + "\n"
 				popularMovieBtn.setOnClickListener {
-					onReadMoreClick.onReadMoreClick()
+					onReadMoreClick.onReadMoreClick(movieForList)
 				}
 			}
 			
@@ -80,7 +84,7 @@ class SearchAdapter(private val listener: OnItemClickListener, private val onRea
 	}
 	
 	interface OnReadMoreClick {
-		fun onReadMoreClick()
+		fun onReadMoreClick(movieForList: MovieForList)
 	}
 	
 }

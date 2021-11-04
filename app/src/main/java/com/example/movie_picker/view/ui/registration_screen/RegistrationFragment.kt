@@ -5,11 +5,11 @@ import android.util.Log
 import android.view.View
 import androidx.navigation.Navigation
 import com.example.movie_picker.R
-import com.example.movie_picker.data.prefs.EMAIL_ID
+import com.example.movie_picker.data.models.User
 import com.example.movie_picker.data.prefs.REMEMBER_USER
 import com.example.movie_picker.data.prefs.SharedPreferences
-import com.example.movie_picker.data.prefs.USER_ID
 import com.example.movie_picker.databinding.FragmentRegistrationBinding
+import com.example.movie_picker.firebase.FirestoreClass
 import com.example.movie_picker.view.base.BaseFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -41,7 +41,6 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 			val emailText = binding.regEmailInput.text
 			val passText = binding.regPasswordInput.text
 			val repeatPassText = binding.regRepeatPasswordInput.text
-			Log.v(TAG, passText.toString())
 			when {
 				emailText.isEmpty() -> toast("You should write email!")
 				passText.isEmpty() -> toast("You should write password!")
@@ -57,12 +56,11 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 						OnCompleteListener<AuthResult> { task ->
 							if (task.isSuccessful) {
 								val firebaseUser: FirebaseUser = task.result!!.user!!
-								
-								toast("You were registered successfully!")
-								sp.setPref(USER_ID, firebaseUser.uid)
-								sp.setPref(EMAIL_ID, emailText.toString().trim())
+								val fireStore = FirestoreClass()
+								fireStore.registerUser(this, User(firebaseUser.uid, firebaseUser.email!!))
+								Navigation.findNavController(requireView())
+									.navigate(R.id.action_registrationFragment_to_searchFragment)
 							} else toast(task.exception.toString())
-							
 						}
 					)
 					if (binding.checkBoxRememberMeReg.isChecked) {
@@ -71,6 +69,10 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 				}
 			}
 		}
+	}
+	
+	fun onSuccessReg() {
+		toast("You were registered successfully!")
 	}
 	
 	override fun onStop() {

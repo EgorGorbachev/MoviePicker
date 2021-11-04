@@ -4,6 +4,8 @@ plugins {
     id 'com.google.gms.google-services'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -45,6 +47,8 @@ android {
 
 dependencies {
 
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.2'
+    implementation 'com.google.firebase:firebase-firestore-ktx:23.0.4'
     def firebase_version = "28.4.2"
     def firebase_auth_version = "21.0.1"
     def navigation_version = '2.3.5'

@@ -9,7 +9,7 @@
         android:id="@+id/loadingFragment"
         android:name="com.example.movie_picker.view.ui.loading_screen.LoadingFragment"
         android:label="fragment_loading"
-        tools:layout="@layout/fragment_loading" >
+        tools:layout="@layout/fragment_loading">
         <action
             android:id="@+id/action_loadingFragment_to_authenticationFragment"
             app:destination="@id/authenticationFragment"
@@ -18,28 +18,39 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
         <action
+            android:id="@+id/action_loadingFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"
-            android:id="@+id/action_loadingFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/authenticationFragment"
         android:name="com.example.movie_picker.view.ui.authentication_screen.AuthenticationFragment"
         android:label="fragment_authentication"
-        tools:layout="@layout/fragment_authentication" >
+        tools:layout="@layout/fragment_authentication">
         <action
+            android:id="@+id/action_authenticationFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"
-            android:id="@+id/action_authenticationFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_authenticationFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_authenticationFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -47,38 +58,45 @@
         android:label="RegistrationFragment"
         tools:layout="@layout/fragment_registration">
         <action
+            android:id="@+id/action_registrationFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right"
             app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left"
-            android:id="@+id/action_registrationFragment_to_authenticationFragment"
-            app:destination="@id/authenticationFragment" />
+            app:popExitAnim="@anim/to_left" />
         <action
+            android:id="@+id/action_registrationFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"
-            android:id="@+id/action_registrationFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.movie_picker.view.ui.search_screen.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
+            android:id="@+id/action_searchFragment_to_detailsMovieFragment"
+            app:destination="@id/detailsMovieFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"
-            android:id="@+id/action_searchFragment_to_detailsMovieFragment"
-            app:destination="@id/detailsMovieFragment" />
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_searchFragment_to_myMoviesFragment"
+            app:destination="@id/myMoviesFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/detailsMovieFragment"
         android:name="com.example.movie_picker.view.ui.details_movie_screen.DetailsMovieFragment"
         android:label="fragment_details_movie"
-        tools:layout="@layout/fragment_details_movie" >
+        tools:layout="@layout/fragment_details_movie">
         <action
             android:id="@+id/action_detailsMovieFragment_to_searchFragment"
             app:destination="@id/searchFragment"
@@ -86,5 +104,68 @@
             app:exitAnim="@anim/to_right"
             app:popEnterAnim="@anim/from_right"
             app:popExitAnim="@anim/to_left" />
+        <argument
+            android:name="movieDetails"
+            app:argType="com.example.movie_picker.data.rest.model.MovieForList" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.movie_picker.view.ui.forgot_password_screen.ForgotPasswordFragment"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password">
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/myMoviesFragment"
+        android:name="com.example.movie_picker.view.ui.my_movies_screen.MyMoviesFragment"
+        android:label="fragment_my_movies"
+        tools:layout="@layout/fragment_my_movies">
+        <action
+            android:id="@+id/action_myMoviesFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_myMoviesFragment_to_detailsMovieFragment"
+            app:destination="@id/detailsMovieFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_myMoviesFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.movie_picker.view.ui.settings_screen.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_myMoviesFragment"
+            app:destination="@id/myMoviesFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_settingsFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
 </navigation>

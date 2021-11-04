@@ -1,13 +1,10 @@
-package com.example.repositories
+package com.example.movie_picker.repositories
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.movie_picker.data.rest.api.MovieApi
-import com.example.movie_picker.data.rest.api.paging_resources.PagingSourceForPopular
-import com.example.movie_picker.data.rest.api.paging_resources.PagingSourceForTopRated
-import com.example.movie_picker.data.rest.api.paging_resources.PagingSourceNowPlaying
-import com.example.movie_picker.data.rest.api.paging_resources.PagingSourceUpcoming
+import com.example.movie_picker.data.rest.api.paging_resources.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -54,4 +51,5 @@ class MovieRep @Inject constructor(
 			),
 			pagingSourceFactory = { PagingSourceUpcoming(movieApi) }
 		).liveData
+	
 }

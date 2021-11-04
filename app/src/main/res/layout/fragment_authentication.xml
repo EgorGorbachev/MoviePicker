@@ -79,10 +79,9 @@
         android:id="@+id/toRegisterText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/authPasswordInput">
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxRememberMeAuth">
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,22 +103,23 @@
             android:textSize="16sp" />
     </LinearLayout>
 
+
     <Button
         android:id="@+id/authLoginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:text="LogIn"
-        android:textSize="18sp"
         android:textAllCaps="false"
         android:textColor="@color/tertiary_color"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toRegisterText" />
+        app:layout_constraintTop_toBottomOf="@+id/toForgotPasswordTextBtn" />
 
     <CheckBox
         android:id="@+id/checkBoxRememberMeAuth"
@@ -130,4 +130,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/authLoginBtn" />
+
+    <TextView
+        android:id="@+id/toForgotPasswordTextBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/yantramanav_regular"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="Forgot password?"
+        android:textColor="#434343"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authPasswordInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>

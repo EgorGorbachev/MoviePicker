@@ -16,7 +16,7 @@ class PagingSourceForPopular(
 		val position = params.key ?: MOVIE_STARTING_PAGE_INDEX
 		
 		return try {
-			val response = movieApi.getPopularMovie(position, params.loadSize)
+			val response = movieApi.getPopularMovie(page = position, perPage = params.loadSize)
 			val movie = response.results
 			
 			LoadResult.Page(

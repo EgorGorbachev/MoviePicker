@@ -2,6 +2,7 @@ package com.example.movie_picker.view.base
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
@@ -44,7 +45,15 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId) {
 		)
 	}
 	
-	companion object {
-		const val TAG= "MyApp"
+	fun minimizeApp() {
+		val startMain = Intent(Intent.ACTION_MAIN)
+		startMain.addCategory(Intent.CATEGORY_HOME)
+		startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+		startActivity(startMain)
 	}
+	
+	companion object {
+		const val TAG = "MyApp"
+	}
+	
 }

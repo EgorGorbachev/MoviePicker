@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_picker.R
@@ -25,7 +27,8 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class SearchFragment : BaseFragment(R.layout.fragment_search), SearchAdapter.OnItemClickListener, SearchAdapter.OnReadMoreClick {
+class SearchFragment : BaseFragment(R.layout.fragment_search), SearchAdapter.OnItemClickListener,
+	SearchAdapter.OnReadMoreClick {
 	
 	@Inject
 	lateinit var app: AppInterfaceImpl
@@ -39,25 +42,30 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), SearchAdapter.OnI
 	
 	private lateinit var viewRoot: ViewGroup
 	
-	private lateinit var recyclerView:RecyclerView
+	private lateinit var recyclerView: RecyclerView
 	
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		
-		_binding = FragmentSearchBinding.bind(requireView())
+		_binding = FragmentSearchBinding.bind(view)
 		
 		app.configurationRetrofit()
 		
 		viewRoot = binding.root
 		
-		val adapter = SearchAdapter(this,this)
+		
+		val adapter = SearchAdapter(this, this)
 		recyclerView = binding.moviesListRecyclerView
 		val layoutManager = GridLayoutManager(requireContext(), 1)
 		recyclerView.layoutManager = layoutManager
 		recyclerView.adapter = adapter
 		
-		viewModel.popularMovies.observe(viewLifecycleOwner) {
-			adapter.submitData(viewLifecycleOwner.lifecycle, it)
+		
+		
+		GlobalScope.launch(Dispatchers.Main) {
+			viewModel.popularMovies.observe(viewLifecycleOwner) {
+				adapter.submitData(viewLifecycleOwner.lifecycle, it)
+			}
 		}
 		
 		val menu = LayoutInflater.from(requireContext())
@@ -97,9 +105,23 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), SearchAdapter.OnI
 				false
 			}
 		}
+		
+		binding.toMyMoviesBtn.setOnClickListener {
+			Navigation.findNavController(requireView())
+				.navigate(R.id.action_searchFragment_to_myMoviesFragment)
+		}
+		
+		
+		activity?.onBackPressedDispatcher?.addCallback(
+			viewLifecycleOwner,
+			object : OnBackPressedCallback(true) {
+				override fun handleOnBackPressed() {
+					minimizeApp()
+				}
+			})
 	}
 	
-	private fun updateView(text:String){
+	private fun updateView(text: String) {
 		GlobalScope.launch(Dispatchers.Main) {
 			delay(200)
 			recyclerView.scrollToPosition(0)
@@ -126,8 +148,10 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), SearchAdapter.OnI
 		Log.v(TAG, "item tap")
 	}
 	
-	override fun onReadMoreClick() {
-		Navigation.findNavController(requireView()).navigate(R.id.action_searchFragment_to_detailsMovieFragment)
+	override fun onReadMoreClick(movieForList: MovieForList) {
+		val action =
+			SearchFragmentDirections.actionSearchFragmentToDetailsMovieFragment(movieForList)
+		findNavController().navigate(action)
 	}
 }
 

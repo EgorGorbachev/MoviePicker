@@ -1,10 +1,11 @@
 package com.example.movie_picker.view.ui.search_screen
 
 import android.app.Application
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.example.repositories.MovieRep
+import com.example.movie_picker.repositories.MovieRep
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -22,4 +23,5 @@ class SearchViewModel @Inject constructor(
 	val nowPlayingMovies = repository.getNowPlayingMovies().cachedIn(viewModelScope)
 	
 	val upcomingMovies = repository.getUpcomingMovies().cachedIn(viewModelScope)
+	
 }

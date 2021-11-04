@@ -14,7 +14,7 @@ class PagingSourceUpcoming(
 		val position = params.key ?: MOVIE_STARTING_PAGE_INDEX
 		
 		return try {
-			val response = movieApi.getUpcomingMovie(position, params.loadSize)
+			val response = movieApi.getUpcomingMovie(page = position, perPage = params.loadSize)
 			val movie = response.results
 			
 			LoadResult.Page(

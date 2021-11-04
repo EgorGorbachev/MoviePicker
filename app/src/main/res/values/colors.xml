@@ -11,8 +11,9 @@
 
     <color name="primary_color">#0d253f</color>
     <color name="primary_light_color">#390D253F</color>
-    <color name="secondary_color">#01b4e4</color>
+    <color name="secondary_color">#0d253f</color>
     <color name="tertiary_color">#90cea1</color>
+    <color name="sing_out_text_color">#E61212</color>
 
 
 </resources>

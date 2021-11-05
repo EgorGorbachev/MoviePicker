@@ -6,6 +6,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -47,6 +48,7 @@ android {
 
 dependencies {
 
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.3'
     def firebase_version = "28.4.2"
     def firebase_auth_version = "21.0.1"
     def firebase_database = "20.0.2"

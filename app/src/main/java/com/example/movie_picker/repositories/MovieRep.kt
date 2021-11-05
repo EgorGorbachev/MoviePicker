@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.movie_picker.data.rest.api.MovieApi
 import com.example.movie_picker.data.rest.api.paging_resources.*
+import com.example.movie_picker.firebase.FirestoreClass
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -51,5 +52,7 @@ class MovieRep @Inject constructor(
 			),
 			pagingSourceFactory = { PagingSourceUpcoming(movieApi) }
 		).liveData
+	
+	suspend fun getMovie(id:Int) = movieApi.getMovie(id)
 	
 }

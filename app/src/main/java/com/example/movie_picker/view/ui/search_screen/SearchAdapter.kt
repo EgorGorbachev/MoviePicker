@@ -12,8 +12,7 @@ import com.squareup.picasso.Picasso
 class SearchAdapter(
 	private val listener: OnItemClickListener,
 	private val onReadMoreClick: OnReadMoreClick
-) :
-	PagingDataAdapter<MovieForList, SearchAdapter.MovieViewHolder>(MOVIE_COMPARATOR) {
+) : PagingDataAdapter<MovieForList, SearchAdapter.MovieViewHolder>(MOVIE_COMPARATOR) {
 	override fun onBindViewHolder(holder: SearchAdapter.MovieViewHolder, position: Int) {
 		val currentItem = getItem(position)
 		

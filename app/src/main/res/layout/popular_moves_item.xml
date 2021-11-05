@@ -12,6 +12,7 @@
         android:layout_height="250dp"
         android:layout_marginTop="16dp"
         android:scaleType="centerCrop"
+        android:src="@drawable/test_poster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,10 +1,9 @@
 package com.example.movie_picker.data.rest.api
 
 import com.example.movie_picker.BuildConfig
+import com.example.movie_picker.data.models.MyMovieModel
 import com.example.movie_picker.data.rest.model.MovieResponse
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface MovieApi {
 	
@@ -43,5 +42,12 @@ interface MovieApi {
 		@Query("page") page: Int,
 		@Query("per_page") perPage: Int
 	): MovieResponse
+	
+	@GET("3/movie/{id}")
+	@Headers("Application: application/json")
+	suspend fun getMovie(
+		@Path ("id")id:Int,
+		@Query("api_key")key:String = KEY
+	): MyMovieModel
 	
 }

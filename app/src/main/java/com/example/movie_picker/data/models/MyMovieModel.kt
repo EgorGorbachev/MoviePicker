@@ -1,10 +1,10 @@
-package com.example.movie_picker.data.rest.model
+package com.example.movie_picker.data.models
+
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-
 @Parcelize
-data class MovieForList(
+data class MyMovieModel(
 	val id:Int,
 	val original_language: String,
 	val original_title: String,
@@ -12,6 +12,5 @@ data class MovieForList(
 	val overview: String,
 	val release_date: String,
 	val poster_path:String?,
-	val vote_average: Double,
-	val status: String = "Not watched"
-):Parcelable
+	val vote_average: Double
+): Parcelable

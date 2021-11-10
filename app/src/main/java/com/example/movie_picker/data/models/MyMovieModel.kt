@@ -14,3 +14,8 @@ data class MyMovieModel(
 	val poster_path:String?,
 	val vote_average: Double
 ): Parcelable
+
+data class MyMovieAllData(
+	val rating:String,
+	val details: MyMovieModel
+)

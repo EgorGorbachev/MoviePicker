@@ -3,7 +3,6 @@ package com.example.movie_picker.view.ui.details_movie_screen
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.movie_picker.data.models.MyMovieModel
 import com.example.movie_picker.firebase.FirestoreClass
 import com.example.movie_picker.firebase.ReadData
 import com.example.movie_picker.repositories.MovieRep
@@ -15,15 +14,14 @@ import javax.inject.Inject
 class DetailsMoviesViewModel @Inject constructor(
 	application: Application,
 	val repository: MovieRep
-):AndroidViewModel(application) {
+) : AndroidViewModel(application) {
 	
 	private val fireStore = FirestoreClass()
 	
-	
-	var list: MutableLiveData<List<String>> = MutableLiveData()
+	var list: MutableLiveData<List<Map<String, String>>> = MutableLiveData()
 	
 	fun myMoviesIdList() = fireStore.getMyMoviesList(object : ReadData {
-		override suspend fun readData(value: List<String>) {
+		override suspend fun readData(value: List<Map<String, String>>) {
 			list.postValue(value)
 		}
 	})

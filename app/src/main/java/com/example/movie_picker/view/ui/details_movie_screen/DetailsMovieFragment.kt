@@ -2,6 +2,7 @@ package com.example.movie_picker.view.ui.details_movie_screen
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -47,17 +48,15 @@ class DetailsMovieFragment : BaseFragment(R.layout.fragment_details_movie) {
 			detailsOriginalTitleValue.text = details.original_title
 			detailsOriginalLanguageValue.text = details.original_language
 			viewModel.list.observe(viewLifecycleOwner){
-				if (it.contains(details.id.toString())) {
+				if (it[id].contains(details.id.toString())) {
 					detailsMyMovieBtn.isVisible = false
 				} else {
 					detailsMyMovieBtn.setOnClickListener {
 						val mFirestoreClass = FirestoreClass()
 						toast("Movie added to your list!")
-						
-						mFirestoreClass.addCollection(mFirestoreClass.currentUser(),details.title, details.id)
-						
+						val movieIdMap:MutableMap<String, Int> = mutableMapOf("id" to  details.id, "rating" to 0)
+						mFirestoreClass.addCollection("movies", details.title, movieIdMap)
 						viewModel.myMoviesIdList()
-						
 					}
 				}
 			}

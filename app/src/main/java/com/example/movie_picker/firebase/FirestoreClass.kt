@@ -1,6 +1,7 @@
 package com.example.movie_picker.firebase
 
 import android.app.Activity
+import android.media.Rating
 import android.util.Log
 import androidx.paging.liveData
 import com.example.movie_picker.data.models.MyMovieModel
@@ -19,6 +20,8 @@ class FirestoreClass {
 	
 	private val fireStore = FirebaseFirestore.getInstance()
 	
+	var fireStoreInstance = fireStore.collection("users").document(currentUser()).collection("movies")
+	
 	fun registerUser(regFr: RegistrationFragment, userId: User) {
 		fireStore.collection("users")
 			.document(userId.userId)
@@ -31,9 +34,9 @@ class FirestoreClass {
 			}
 	}
 	
-	fun addCollection(uid: String, title: String, movieId: Int) {
-		val movieIdMap:MutableMap<String, Int> = mutableMapOf("id" to movieId)
-		fireStore.collection("users").document(uid).collection("movies").document(title).set(movieIdMap)
+	fun addCollection(collectionName: String, title: String, map: MutableMap<String, Int>) {
+		fireStore.collection("users").document(currentUser()).collection(collectionName)
+			.document(title).set(map)
 	}
 	
 	fun currentUser(): String {
@@ -45,23 +48,25 @@ class FirestoreClass {
 		return currentUserId
 	}
 	
-	fun getMyMoviesList(readData: ReadData){
-		val movies = ArrayList<String>()
+	fun getMyMoviesList(readData: ReadData) {
+		val movies = ArrayList<Map<String,String>>()
 		val moviesRef = fireStore.collection("users").document(currentUser()).collection("movies")
-		moviesRef.get().addOnCompleteListener{ task ->
+		moviesRef.get().addOnCompleteListener { task ->
 			GlobalScope.launch {
-				if(task.isSuccessful){
+				if (task.isSuccessful) {
 					for (document in task.result!!) {
 						val id = document.data["id"].toString()
-						movies.add(id)
+						val rating = document.data["rating"].toString()
+						movies.add(mapOf(("rating" to rating),"id" to id ))
 					}
 					readData.readData(movies)
 				}
 			}
 		}
 	}
+	
 }
 
-interface ReadData{
-	suspend fun readData(value: List<String>)
+interface ReadData {
+	suspend fun readData(value: List<Map<String,String>>)
 }

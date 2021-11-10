@@ -6,14 +6,17 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movie_picker.data.models.MyMovieAllData
 import com.example.movie_picker.data.models.MyMovieModel
 import com.example.movie_picker.databinding.MyMoviesResyclerItemBinding
 import com.example.movie_picker.databinding.PopularMovesItemBinding
+import com.example.movie_picker.firebase.FirestoreClass
 import com.squareup.picasso.Picasso
 
 class MyMoviesAdapter(
-	private val listener: OnItemClickListener
-) : ListAdapter<MyMovieModel, MyMoviesAdapter.MyMovieViewHolder>(MY_MOVIE_COMPARATOR) {
+	private val listener: OnItemClickListener,
+	private val ratingListener: OnRatingClickListener
+) : ListAdapter<MyMovieAllData, MyMoviesAdapter.MyMovieViewHolder>(MY_MOVIE_COMPARATOR) {
 	override fun onBindViewHolder(holder: MyMoviesAdapter.MyMovieViewHolder, position: Int) {
 		val currentItem = getItem(position)
 		
@@ -48,29 +51,37 @@ class MyMoviesAdapter(
 			}
 		}
 		
-		fun bind(myMovieModel: MyMovieModel) {
+		fun bind(myMovieAllData: MyMovieAllData) {
 			binding.apply {
-				Picasso.get().load("https://image.tmdb.org/t/p/w500/${myMovieModel.poster_path}").into(binding.myMovieImage)
-				binding.myMovieTitle.text = myMovieModel.title
+				Picasso.get().load("https://image.tmdb.org/t/p/w500/${myMovieAllData.details.poster_path}").into(binding.myMovieImage)
+				binding.myMovieTitle.text = myMovieAllData.details.title
 				binding.myMovieStatusValue.text = "Not Watched"
-				binding.myMovieRating.rating = 4f
+				binding.myMovieRating.rating = myMovieAllData.rating.toFloat()
+				binding.myMovieRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+					ratingListener.onRatingClick(myMovieAllData,rating)
+				}
 			}
 		}
 		
 	}
 	
 	interface OnItemClickListener {
-		fun onItemClick(myMovieModel: MyMovieModel)
+		fun onItemClick(myMovieAllData: MyMovieAllData)
 	}
 	
+	interface OnRatingClickListener {
+		fun onRatingClick(myMovieAllData: MyMovieAllData, rating:Float)
+	}
+
+	
 	companion object {
-		private val MY_MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<MyMovieModel>() {
-			override fun areItemsTheSame(oldItem: MyMovieModel, newItem: MyMovieModel) =
-				oldItem.id == newItem.id
+		private val MY_MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<MyMovieAllData>() {
+			override fun areItemsTheSame(oldItem: MyMovieAllData, newItem: MyMovieAllData) =
+				oldItem.details.id == newItem.details.id
 			
 			override fun areContentsTheSame(
-				oldItem: MyMovieModel,
-				newItem: MyMovieModel
+				oldItem: MyMovieAllData,
+				newItem: MyMovieAllData
 			) = oldItem == newItem
 		}
 		

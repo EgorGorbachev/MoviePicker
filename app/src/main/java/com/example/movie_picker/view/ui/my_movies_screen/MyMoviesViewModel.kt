@@ -24,12 +24,12 @@ class MyMoviesViewModel @Inject constructor(
 	var list: MutableLiveData<MutableList<MyMovieAllData>> = MutableLiveData()
 	val listM: MutableList<MyMovieAllData> = mutableListOf()
 	
-	val rating:MutableLiveData<String>? = null
+	private val rating:MutableLiveData<String>? = null
 	
 	fun myMoviesList() = fireStore.getMyMoviesList(object : ReadData {
 		override suspend fun readData(value: List<Map<String,String>>) {
 			for (item in value) {
-				listM.add(MyMovieAllData(item["rating"]!!, repository.getMovie(item["id"]!!.toInt()) ))
+				listM.add(MyMovieAllData(item["rating"]!!, repository.getMovie(item["id"]!!.toInt()), item["watchingStatus"]!! ))
 			}
 			list.postValue(listM)
 		}

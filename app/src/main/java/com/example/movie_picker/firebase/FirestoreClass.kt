@@ -57,7 +57,9 @@ class FirestoreClass {
 					for (document in task.result!!) {
 						val id = document.data["id"].toString()
 						val rating = document.data["rating"].toString()
-						movies.add(mapOf(("rating" to rating),"id" to id ))
+						val status = document.data["status"].toString()
+						Log.v("lol","sss$status")
+						movies.add(mapOf(("rating" to rating),"id" to id, "watchingStatus" to status ))
 					}
 					readData.readData(movies)
 				}

@@ -1,21 +1,23 @@
 package com.example.movie_picker.view.ui.my_movies_screen
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
+import android.widget.AdapterView
+import android.widget.RatingBar
+import android.widget.Spinner
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_picker.data.models.MyMovieAllData
-import com.example.movie_picker.data.models.MyMovieModel
-import com.example.movie_picker.databinding.MyMoviesResyclerItemBinding
-import com.example.movie_picker.databinding.PopularMovesItemBinding
-import com.example.movie_picker.firebase.FirestoreClass
+import com.example.movie_picker.databinding.MyMoviesRecyclerItemBinding
 import com.squareup.picasso.Picasso
 
 class MyMoviesAdapter(
 	private val listener: OnItemClickListener,
-	private val ratingListener: OnRatingClickListener
+	private val ratingListener: OnRatingClickListener,
+	private val watchingStatus: OnWatchingStatusClickListener,
 ) : ListAdapter<MyMovieAllData, MyMoviesAdapter.MyMovieViewHolder>(MY_MOVIE_COMPARATOR) {
 	override fun onBindViewHolder(holder: MyMoviesAdapter.MyMovieViewHolder, position: Int) {
 		val currentItem = getItem(position)
@@ -31,11 +33,11 @@ class MyMoviesAdapter(
 		viewType: Int
 	): MyMoviesAdapter.MyMovieViewHolder {
 		val binding =
-			MyMoviesResyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+			MyMoviesRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 		return MyMovieViewHolder(binding)
 	}
 	
-	inner class MyMovieViewHolder(private val binding: MyMoviesResyclerItemBinding) :
+	inner class MyMovieViewHolder(private val binding: MyMoviesRecyclerItemBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 		
 		init {
@@ -53,13 +55,43 @@ class MyMoviesAdapter(
 		
 		fun bind(myMovieAllData: MyMovieAllData) {
 			binding.apply {
-				Picasso.get().load("https://image.tmdb.org/t/p/w500/${myMovieAllData.details.poster_path}").into(binding.myMovieImage)
+				Picasso.get()
+					.load("https://image.tmdb.org/t/p/w500/${myMovieAllData.details.poster_path}")
+					.into(binding.myMovieImage)
 				binding.myMovieTitle.text = myMovieAllData.details.title
-				binding.myMovieStatusValue.text = "Not Watched"
 				binding.myMovieRating.rating = myMovieAllData.rating.toFloat()
+				watchingStatus.initSpinnerAdapter(
+					myMovieAllData,
+					binding.myMovieStatusValue,
+					binding.myMovieContainer
+				)
 				binding.myMovieRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-					ratingListener.onRatingClick(myMovieAllData,rating)
+					ratingListener.onRatingClick(
+						myMovieAllData,
+						rating,
+						binding.myMovieStatusValue,
+						binding.myMovieContainer,
+						binding.myMovieRating
+					)
 				}
+				binding.myMovieStatusValue.onItemSelectedListener =
+					object : AdapterView.OnItemSelectedListener {
+						override fun onNothingSelected(parent: AdapterView<*>?) {}
+						override fun onItemSelected(
+							parent: AdapterView<*>?,
+							view: View?,
+							position: Int,
+							id: Long
+						) {
+							watchingStatus.spinnerStatusUpdate(
+								myMovieAllData,
+								position,
+								binding.myMovieContainer,
+								binding.myMovieRating
+							)
+						}
+						
+					}
 			}
 		}
 		
@@ -70,9 +102,29 @@ class MyMoviesAdapter(
 	}
 	
 	interface OnRatingClickListener {
-		fun onRatingClick(myMovieAllData: MyMovieAllData, rating:Float)
+		fun onRatingClick(
+			myMovieAllData: MyMovieAllData,
+			rating: Float,
+			spinner: Spinner,
+			container: ConstraintLayout,
+			ratingView: RatingBar
+		)
 	}
-
+	
+	interface OnWatchingStatusClickListener {
+		fun initSpinnerAdapter(
+			myMovieAllData: MyMovieAllData,
+			spinner: Spinner,
+			container: ConstraintLayout
+		)
+		
+		fun spinnerStatusUpdate(
+			myMovieAllData: MyMovieAllData,
+			position: Int,
+			container: ConstraintLayout,
+			rating: RatingBar
+		)
+	}
 	
 	companion object {
 		private val MY_MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<MyMovieAllData>() {
@@ -87,3 +139,5 @@ class MyMoviesAdapter(
 		
 	}
 }
+
+

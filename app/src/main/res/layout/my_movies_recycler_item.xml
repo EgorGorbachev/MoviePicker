@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/myMovieContainer"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -8,8 +13,7 @@
         android:id="@+id/myMovieImage"
         android:layout_width="120dp"
         android:layout_height="200dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+
         android:scaleType="centerCrop"
         android:src="@drawable/test_poster"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,14 +21,17 @@
 
     <TextView
         android:id="@+id/myMovieTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/yantramanav_regular"
+        android:singleLine="true"
         android:text="Title"
         android:textColor="@color/primary_color"
-        android:textSize="32sp"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/myMovieImage"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,6 +40,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="start|center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/myMovieImage"
         app:layout_constraintTop_toBottomOf="@+id/myMovieTitle">
 
@@ -41,24 +53,45 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/yantramanav_regular"
             android:text="Status:"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
-        <TextView
+        <Spinner
             android:id="@+id/myMovieStatusValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical|start"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/yantramanav_medium"
-            android:text="Not watched"
-            android:textSize="20sp" />
+            android:background="@drawable/spinner_drop_down"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:spinnerMode="dialog" />
     </LinearLayout>
 
     <RatingBar
         android:id="@+id/myMovieRating"
+        style="?android:attr/ratingBarStyleIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:isIndicator="false"
+        app:layout_constraintEnd_toEndOf="@+id/myMovieStatusContainer"
         app:layout_constraintStart_toEndOf="@+id/myMovieImage"
         app:layout_constraintTop_toBottomOf="@+id/myMovieStatusContainer" />
+
+    <Button
+        android:id="@+id/myMovieMovieBtn"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/yantramanav_regular"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Read More"
+        android:textAllCaps="false"
+        android:textColor="@color/tertiary_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/myMovieImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

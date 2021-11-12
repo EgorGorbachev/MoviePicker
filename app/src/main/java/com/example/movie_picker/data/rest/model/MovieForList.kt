@@ -12,6 +12,5 @@ data class MovieForList(
 	val overview: String,
 	val release_date: String,
 	val poster_path:String?,
-	val vote_average: Double,
-	val status: String = "Not watched"
+	val vote_average: Double
 ):Parcelable

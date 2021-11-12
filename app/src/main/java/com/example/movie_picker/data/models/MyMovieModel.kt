@@ -17,5 +17,6 @@ data class MyMovieModel(
 
 data class MyMovieAllData(
 	val rating:String,
-	val details: MyMovieModel
+	val details: MyMovieModel,
+	val watchingStatus: String = "Not watched"
 )

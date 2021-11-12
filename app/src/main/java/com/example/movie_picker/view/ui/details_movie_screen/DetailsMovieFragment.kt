@@ -48,7 +48,11 @@ class DetailsMovieFragment : BaseFragment(R.layout.fragment_details_movie) {
 			detailsOriginalTitleValue.text = details.original_title
 			detailsOriginalLanguageValue.text = details.original_language
 			viewModel.list.observe(viewLifecycleOwner){
-				if (it[id].contains(details.id.toString())) {
+				val idList = mutableListOf<Int>()
+				for (item in it){
+					idList.add(item["id"]!!.toInt())
+				}
+				if (idList.contains(details.id)) {
 					detailsMyMovieBtn.isVisible = false
 				} else {
 					detailsMyMovieBtn.setOnClickListener {

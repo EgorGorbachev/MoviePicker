@@ -1,5 +1,6 @@
 package com.example.movie_picker.view.ui.my_movies_screen
 
+import android.icu.text.CaseMap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ class MyMoviesAdapter(
 	private val listener: OnItemClickListener,
 	private val ratingListener: OnRatingClickListener,
 	private val watchingStatus: OnWatchingStatusClickListener,
+	private val readMoreClick: OnReadMoreClickMyMovie
 ) : ListAdapter<MyMovieAllData, MyMoviesAdapter.MyMovieViewHolder>(MY_MOVIE_COMPARATOR) {
 	override fun onBindViewHolder(holder: MyMoviesAdapter.MyMovieViewHolder, position: Int) {
 		val currentItem = getItem(position)
@@ -92,6 +94,11 @@ class MyMoviesAdapter(
 						}
 						
 					}
+				
+				binding.myMovieMovieBtn.setOnClickListener {
+					readMoreClick.onReadMoreClickMyMovie(myMovieAllData)
+				}
+				
 			}
 		}
 		
@@ -126,6 +133,9 @@ class MyMoviesAdapter(
 		)
 	}
 	
+	interface OnReadMoreClickMyMovie {
+		fun onReadMoreClickMyMovie(myMovieAllData: MyMovieAllData)
+	}
 	companion object {
 		private val MY_MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<MyMovieAllData>() {
 			override fun areItemsTheSame(oldItem: MyMovieAllData, newItem: MyMovieAllData) =

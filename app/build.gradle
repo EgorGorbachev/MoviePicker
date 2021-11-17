@@ -49,6 +49,7 @@ android {
 dependencies {
 
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.3'
+    implementation 'com.google.android.gms:play-services-ads:20.4.0'
     def firebase_version = "28.4.2"
     def firebase_auth_version = "21.0.1"
     def firebase_database = "20.0.2"
@@ -66,6 +67,7 @@ dependencies {
     implementation "com.google.firebase:firebase-auth-ktx:$firebase_auth_version"
     implementation "com.google.firebase:firebase-database-ktx:$firebase_database"
     implementation "com.google.firebase:firebase-firestore-ktx:$firebase_firestore"
+    implementation 'com.google.firebase:firebase-messaging-ktx'
 
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"

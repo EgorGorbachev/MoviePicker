@@ -53,14 +53,11 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), SearchAdapter.OnI
 		
 		viewRoot = binding.root
 		
-		
 		val adapter = SearchAdapter(this, this)
 		recyclerView = binding.moviesListRecyclerView
 		val layoutManager = GridLayoutManager(requireContext(), 1)
 		recyclerView.layoutManager = layoutManager
 		recyclerView.adapter = adapter
-		
-		
 		
 		GlobalScope.launch(Dispatchers.Main) {
 			viewModel.popularMovies.observe(viewLifecycleOwner) {

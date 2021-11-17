@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <corners
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp" />
@@ -9,5 +10,5 @@
         android:right="8dp"
         android:top="8dp" />
     <solid
-        android:color="@color/primary_color" />
+        android:color="@color/tertiary_color" />
 </shape>

@@ -201,6 +201,18 @@
                 android:insetBottom="0dp"
                 android:text="Add to my movies"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/detailsMyMovieDeleteBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/my_movies_scroll_view_border_delete"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:visibility="gone"
+                android:textColor="@color/sing_out_text_color"
+                android:text="Delete from my movies"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 

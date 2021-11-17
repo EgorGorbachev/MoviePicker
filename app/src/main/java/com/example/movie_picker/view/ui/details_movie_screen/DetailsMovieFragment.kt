@@ -7,6 +7,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.movie_picker.R
 import com.example.movie_picker.data.models.MyMovieModel
@@ -36,6 +37,8 @@ class DetailsMovieFragment : BaseFragment(R.layout.fragment_details_movie) {
 		
 		val details = args.movieDetails
 		
+		val mFirestoreClass = FirestoreClass()
+		
 		viewModel.myMoviesIdList()
 		
 		binding.apply {
@@ -54,15 +57,23 @@ class DetailsMovieFragment : BaseFragment(R.layout.fragment_details_movie) {
 				}
 				if (idList.contains(details.id)) {
 					detailsMyMovieBtn.isVisible = false
+					detailsMyMovieDeleteBtn.isVisible = true
 				} else {
 					detailsMyMovieBtn.setOnClickListener {
-						val mFirestoreClass = FirestoreClass()
 						toast("Movie added to your list!")
 						val movieIdMap:MutableMap<String, Int> = mutableMapOf("id" to  details.id, "rating" to 0)
 						mFirestoreClass.addCollection("movies", details.title, movieIdMap)
 						viewModel.myMoviesIdList()
 					}
+					Log.d("lol",it.toString())
 				}
+			}
+			detailsMyMovieDeleteBtn.setOnClickListener {
+				mFirestoreClass.deleteItem(details.title)
+				toast("Movie deleted from your list!")
+				detailsMyMovieBtn.isVisible = true
+				detailsMyMovieDeleteBtn.isVisible = false
+				Navigation.findNavController(requireView()).navigate(R.id.action_detailsMovieFragment_to_searchFragment)
 			}
 			
 		}

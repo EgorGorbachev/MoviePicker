@@ -34,10 +34,4 @@ class MyMoviesViewModel @Inject constructor(
 			list.postValue(listM)
 		}
 	})
-	
-	fun getRatingString(title:String){
-		fireStore.fireStoreInstance.document(title).get().addOnCompleteListener { task ->
-			rating?.value = task.result?.getString("rating")!!
-		}
-	}
 }

@@ -142,6 +142,7 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), SearchAdapter.OnI
 	}
 	
 	override fun onItemClick(movieForList: MovieForList) {
+
 		Log.v(TAG, "item tap")
 	}
 	

@@ -1,5 +1,6 @@
 package com.example.movie_picker.firebase
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.NotificationManager.IMPORTANCE_HIGH
@@ -13,6 +14,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.example.movie_picker.MainActivity
 import com.example.movie_picker.R
 import com.example.movie_picker.common.CHANNEL_ID
@@ -24,8 +26,10 @@ import kotlin.random.Random
 
 const val TAG = "MyApp"
 
+@SuppressLint("MissingFirebaseInstanceTokenRefresh")
 class FirebaseService : FirebaseMessagingService() {
 	
+	@SuppressLint("UnspecifiedImmutableFlag")
 	override fun onMessageReceived(message: RemoteMessage) {
 		super.onMessageReceived(message)
 		
@@ -70,7 +74,7 @@ class FirebaseService : FirebaseMessagingService() {
 		val channel = NotificationChannel(CHANNEL_ID, channelName, IMPORTANCE_HIGH).apply {
 			description = "My channel description"
 			enableLights(true)
-			lightColor = Color.BLUE
+			lightColor = ContextCompat.getColor(applicationContext, R.color.primary_color)
 		}
 		notificationManager.createNotificationChannel(channel)
 	}

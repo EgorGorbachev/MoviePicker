@@ -60,6 +60,8 @@ dependencies {
     def picasso_version = '2.71828'
     def hilt_version = '2.39.1'
     def paging_version = '3.0.0-alpha05'
+    def rx_java_version = '2.1.1'
+    def dagger_version = '2.17'
 
     //firebase
     implementation platform ("com.google.firebase:firebase-bom:$firebase_version")
@@ -76,7 +78,7 @@ dependencies {
     //Hilt
     implementation("com.google.dagger:hilt-android:$hilt_version")
     kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
-    annotationProcessor "com.google.dagger:dagger-android-processor:2.11"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
 
 
     // Retrofit + GSON
@@ -84,8 +86,8 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
-    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_java_version"
 
     //Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
